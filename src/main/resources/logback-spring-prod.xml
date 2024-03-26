@@ -1,9 +1,12 @@
 <included>
+
+  <property resource="logback-variables.properties"/>
+
   <appender name="REQUEST1" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <!--    <file>logs/request1.log</file>-->
     <file>${LOG_DIR}/request1.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>logs/archive/request1.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+      <fileNamePattern>${LOG_DIR}/archive/request1.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
       <maxFileSize>1KB</maxFileSize> <!-- 로그 파일의 최대 크기 -->
       <maxHistory>30</maxHistory> <!-- 로그파일 최대 보관 주기 (단위: 일) -->
     </rollingPolicy>
@@ -16,10 +19,10 @@
   </appender>
 
   <appender name="REQUEST2" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${LOG_DIR}/request1.log</file>
+    <file>${LOG_DIR}/request2.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>logs/archive/request1.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
-      <maxFileSize>1KB</maxFileSize> <!-- 로그 파일의 최대 크기 -->
+      <fileNamePattern>${LOG_DIR}/archive/request2.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+      <maxFileSize>10KB</maxFileSize> <!-- 로그 파일의 최대 크기 -->
       <maxHistory>30</maxHistory> <!-- 로그파일 최대 보관 주기 (단위: 일) -->
     </rollingPolicy>
     <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -32,5 +35,6 @@
 
   <root level="INFO">
     <appender-ref ref="REQUEST1"/>
+    <appender-ref ref="REQUEST2"/>
   </root>
 </included>
